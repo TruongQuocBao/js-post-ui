@@ -1,11 +1,11 @@
 import postApi from './api/postapi';
-import { renderPostList, renderPagination, initSearch, initPagination } from './utils';
+import { renderPostList, renderPagination, initSearch, initPagination, toast } from './utils';
 
 async function handleFilterChange(filterName, filterValue) {
   try {
     // update query parmas
     const url = new URL(window.location);
-    url.searchParams.set(filterName, filterValue);
+    if (filterName) url.searchParams.set(filterName, filterValue);
 
     //reset page if needed
     if (filterName === 'title_like') url.searchParams.set('_page', 1);
@@ -22,6 +22,46 @@ async function handleFilterChange(filterName, filterValue) {
   }
 }
 
+function registerPostDeleteEvent() {
+  document.addEventListener('post-delete', async (event) => {
+    try {
+      // const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
+      // if (removeModal) removeModal.show();
+
+      const post = event.detail;
+      const message = `Are you sure to remove post "${post.title}"?`;
+      if (window.confirm(message)) {
+        await postApi.remove(post.id);
+        await handleFilterChange();
+        toast.success('Remove post successfully');
+      }
+    } catch (error) {
+      console.log('falied to remove post', error);
+      toast.error(error.message);
+    }
+  });
+}
+
+// function registerCancelEvent() {
+//   document.addEventListener('cancel-btn', async (event) => {
+//     try {
+//       const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
+//       if (removeModal) removeModal.hide();
+
+//       // const post = event.detail;
+//       // const message = `Are you sure to remove post "${post.title}"?`;
+//       // if (window.confirm(message)) {
+//       //   await postApi.remove(post.id);
+//       //   await handleFilterChange();
+//       //   toast.success('Remove post successfully');
+//       // }
+//     } catch (error) {
+//       console.log('falied to remove post', error);
+//       toast.error(error.message);
+//     }
+//   });
+// }
+
 (async () => {
   try {
     const url = new URL(window.location);
@@ -33,6 +73,9 @@ async function handleFilterChange(filterName, filterValue) {
     history.pushState({}, '', url);
 
     const queryParams = url.searchParams;
+
+    registerPostDeleteEvent();
+    // registerCancelEvent();
 
     //attach click event for links
     initPagination({
@@ -47,9 +90,10 @@ async function handleFilterChange(filterName, filterValue) {
       onChange: (value) => handleFilterChange('title_like', value),
     });
 
-    const { data, pagination } = await postApi.getAll(queryParams);
-    renderPostList(data);
-    renderPagination('pagination', pagination);
+    // const { data, pagination } = await postApi.getAll(queryParams);
+    // renderPostList(data);
+    // renderPagination('pagination', pagination);
+    handleFilterChange();
   } catch (error) {
     console.log('get all failed', error);
     //show nodal, toast error

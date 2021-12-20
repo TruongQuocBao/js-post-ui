@@ -1,4 +1,3 @@
-
 section.hero {
   height: 300px;
   background: #eee;
@@ -10,17 +9,26 @@ section.hero {
 .post-detail .post-detail-main {
   margin-top: -4rem;
   padding: 2rem;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   background-color: white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .post-detail .post-title-wrapper {
   margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  border-bottom: 3px solid #6c757d;
 }
-
 
 .post-detail .post-image {
   width: 100%;
   margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.post-detail .post-image:hover {
+  cursor: pointer;
+}
+
+a:hover > i {
+  transform: none;
 }

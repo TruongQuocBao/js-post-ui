@@ -11,6 +11,7 @@ body {
   min-height: 100vh;
 
   font-family: 'Rubik', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
 }
 
 body > main {
@@ -89,5 +90,11 @@ ul {
   border-width: 3px;
   border-style: solid;
   border-image: linear-gradient(to right, red, purple) 1;
-  padding: 6px;
+  padding: 5px;
+}
+/*  */
+.form-control:focus {
+  border: 2px solid #2980b9;
+  outline: none;
+  background: white;
 }

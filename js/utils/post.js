@@ -27,9 +27,64 @@ export function createPostElement(post) {
 
     // load image error
     thumbnailElement.addEventListener('error', () => {
-      thumbnailElement.src = 'https://via.placeholder.com/728x90.png?text=thumbnail';
+      thumbnailElement.src = 'https://via.placeholder.com/300x200.png?text=thumbnail';
     });
   }
+
+  // attach event
+  // go to post detail when click on div.post-item
+  const divElement = liElement.firstElementChild;
+  if (divElement) {
+    divElement.addEventListener('click', (event) => {
+      // S2: if  event  is triggered from menu --> ignore
+      const menu = liElement.querySelector('[data-id="menu"]');
+      if (menu && menu.contains(event.target)) return;
+
+      window.location.assign(`./post-detail.html?id=${post.id}`);
+    });
+  }
+
+  // add click event for edit button
+  const editButton = liElement.querySelector('[data-id = "edit"]');
+  if (editButton) {
+    editButton.addEventListener('click', () => {
+      console.log('edit click');
+      // S1: prevent event bubbing  to parent
+      // e.stopPropagation()
+
+      window.location.assign(`./add-edit-post.html?id=${post.id}`);
+    });
+  }
+
+  // add click event for reomve button
+  const removeButton = liElement.querySelector('[data-id = "remove"]');
+  if (removeButton) {
+    removeButton.addEventListener('click', () => {
+      const customEvent = new CustomEvent('post-delete', {
+        bubbles: true,
+        detail: post,
+      });
+
+      removeButton.dispatchEvent(customEvent);
+    });
+  }
+
+  // cancel click
+
+  // const cancelButton = document.getElementById('cancel');
+  // if (cancelButton) {
+  //   cancelButton.addEventListener('click', () => {
+  //     console.log('11111111');
+  //     const customEvent = new CustomEvent('cancel-btn', {
+  //       bubbles: true,
+  //       detail: post,
+  //     });
+  //     cancelButton.dispatchEvent(customEvent);
+
+  //     // const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
+  //     // if (removeModal) removeModal.hide();
+  //   });
+  // }
 
   return liElement;
 }

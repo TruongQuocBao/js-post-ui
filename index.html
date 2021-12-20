@@ -26,6 +26,11 @@
 
     <!-- Use font Rubik -->
     <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+    <!-- font roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Internal CSS -->
     <link rel="stylesheet" href="/styles/home.css" />
@@ -56,7 +61,7 @@
             </div>
           </div>
 
-          <div class="post-item-menu">
+          <div data-id="menu" class="post-item-menu">
             <div data-id="edit" class="menu-item rounded-circle" role="button">
               <i class="fas fa-pen"></i>
             </div>
@@ -252,6 +257,33 @@
     <footer class="text-center text-muted py-3">
       <small>Created by Po with <i class="fas fa-heart"></i></small>
     </footer>
+
+    <!-- Modal -->
+    <div id="remove-modal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button id="oke" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              OKE
+            </button>
+            <button id="cancel" type="button" class="btn btn-primary">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
