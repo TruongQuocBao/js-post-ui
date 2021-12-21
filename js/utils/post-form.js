@@ -61,7 +61,7 @@ function getPostSchema() {
       .required('please enter author')
       .test(
         'at least two words',
-        'Please enter at least two words',
+        'Please enter at least two words and each word is at least 3 characters ',
         (value) => value.split(' ').filter((x) => !!x && x.length >= 3).length >= 2
       ),
     description: yup.string(),
@@ -141,6 +141,7 @@ async function validatePostForm(form, formValues) {
       }
     }
   }
+
   //add was-validated class to form element
   const isValid = form.checkValidity();
   if (!isValid) form.classList.add('was-validated');
