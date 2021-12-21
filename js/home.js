@@ -25,8 +25,13 @@ async function handleFilterChange(filterName, filterValue) {
 function registerPostDeleteEvent() {
   document.addEventListener('post-delete', async (event) => {
     try {
-      // const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
-      // if (removeModal) removeModal.show();
+      // const post = event.detail;
+      // document.getElementById(
+      //   'content-modal'
+      // ).textContent = `Are you sure to remove post "${post.title}"?`;
+
+      // // const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
+      // // if (removeModal) removeModal.show();
 
       const post = event.detail;
       const message = `Are you sure to remove post "${post.title}"?`;
@@ -41,26 +46,6 @@ function registerPostDeleteEvent() {
     }
   });
 }
-
-// function registerCancelEvent() {
-//   document.addEventListener('cancel-btn', async (event) => {
-//     try {
-//       const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
-//       if (removeModal) removeModal.hide();
-
-//       // const post = event.detail;
-//       // const message = `Are you sure to remove post "${post.title}"?`;
-//       // if (window.confirm(message)) {
-//       //   await postApi.remove(post.id);
-//       //   await handleFilterChange();
-//       //   toast.success('Remove post successfully');
-//       // }
-//     } catch (error) {
-//       console.log('falied to remove post', error);
-//       toast.error(error.message);
-//     }
-//   });
-// }
 
 (async () => {
   try {

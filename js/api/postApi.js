@@ -1,4 +1,4 @@
-import axiosClient from './axiosclient';
+import axiosClient from './axiosClient';
 
 const postApi = {
   getAll(params) {

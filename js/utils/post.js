@@ -69,23 +69,6 @@ export function createPostElement(post) {
     });
   }
 
-  // cancel click
-
-  // const cancelButton = document.getElementById('cancel');
-  // if (cancelButton) {
-  //   cancelButton.addEventListener('click', () => {
-  //     console.log('11111111');
-  //     const customEvent = new CustomEvent('cancel-btn', {
-  //       bubbles: true,
-  //       detail: post,
-  //     });
-  //     cancelButton.dispatchEvent(customEvent);
-
-  //     // const removeModal = new window.bootstrap.Modal(document.getElementById('remove-modal'));
-  //     // if (removeModal) removeModal.hide();
-  //   });
-  // }
-
   return liElement;
 }
 
